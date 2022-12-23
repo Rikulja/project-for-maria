@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "modifications",
+  "editor.formatOnPaste": false,
+  "prettier.embeddedLanguageFormatting": "auto"
+}
