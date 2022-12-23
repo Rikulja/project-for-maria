@@ -46,13 +46,14 @@ h1{
     margin: 0 0 1.5rem;
 }
     h2{
-        font-weight: lighter;
-        font-size: 4rem;
+  text-align: center;
+  margin: 0 0 1.5rem;
     }
     h3, 
     h4{
     text-align: center;
     font-weight: 700;
+    margin: 0 0 1.5rem;
        
     }
     span{
