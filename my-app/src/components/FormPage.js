@@ -31,10 +31,10 @@ function FormPage() {
             <label htmlFor="room"> Room Nr</label>
             <input type="text" name="room" />
           </div>
-          <button type="submit" value="Submit">
-            Next
-          </button>
         </div>
+        <button type="submit" value="Submit">
+          Next
+        </button>
       </Form>
     </div>
   );
@@ -42,9 +42,19 @@ function FormPage() {
 
 const Form = styled.div`
   display: flex;
-  // flex-flow: column wrap;
+  flex-direction: column;
   justify-content: center;
-  text-align: right;
+  text-align: center;
+  display: flex;
+  .column {
+    margin: 0 auto 2rem;
+    min-width: 200px;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
   label {
     margin: 1rem;
     font-size: 1.7rem;
@@ -52,8 +62,6 @@ const Form = styled.div`
   input {
     align-items: center;
     margin: 15px 10px 5px 0;
-    padding: 1rem 2rem;
-    background-color: #fff;
     border: 2px solid #344d67;
   }
 `;
