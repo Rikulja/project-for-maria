@@ -27,6 +27,7 @@ body{
 button {
     /* position: absolute;
     margin-top: 1rem; */
+    cursor:pointer;
     left: 50%;
     text-align:center;
     width:10vh;
