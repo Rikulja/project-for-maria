@@ -1,5 +1,6 @@
 //Styled
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const AmpoulePage = () => {
   return (
@@ -16,7 +17,9 @@ const AmpoulePage = () => {
         <Checkmark>
           <input type="checkbox" id="ampoule" name="ampoule"></input>
         </Checkmark>
-        <button>Start</button>
+        <Link to="/countdown-vertical">
+          <button>Start</button>
+        </Link>
       </Ampoule>
     </div>
   );

@@ -1,5 +1,6 @@
 //Styled
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function FormPage() {
   return (
@@ -32,9 +33,10 @@ function FormPage() {
             <input type="text" name="room" />
           </div>
         </div>
-        <button type="submit" value="Submit">
-          Next
-        </button>
+
+        <Link to="/ampoule-vertical">
+          <button>Next</button>
+        </Link>
       </Form>
     </div>
   );
