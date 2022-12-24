@@ -24,21 +24,24 @@ body{
     top: 50%;
     border-radius: 2px;
 }
-button{
-    position: absolute;
+button {
+    /* position: absolute;
+    margin-top: 1rem; */
     left: 50%;
-    margin-top: 1rem;
-
+    text-align:center;
+    width:10vh;
+    margin:1rem auto;
     padding: 0.5rem 2rem;
     background-color: #344d67;
     border: 1px solid #ddd;
     color: white;
     &:hover {
-      background: #d73851;
+      background: royalblue;
       border: 1px solid #d73851;
       color: #fff;
     }
-}
+  }
+
 h1{
     font-size: 3rem;
     font-weight: 700;

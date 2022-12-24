@@ -1,4 +1,3 @@
-import React from "react";
 //Styled
 import styled from "styled-components";
 
