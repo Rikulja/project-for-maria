@@ -1,9 +1,11 @@
 //Styled
 import styled from "styled-components";
+import Axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function FormPage() {
+  const url = "";
   const [data, setData] = useState({
     product: "",
     dmanufacture: "",
@@ -22,6 +24,16 @@ function FormPage() {
 
   function submitForm(e) {
     e.preventDefault();
+
+    Axios.post(url, {
+      product: data.product,
+      dmanufacture: data.dmanufacture,
+      dcontrol: data.dcontrol,
+      operator: data.operator,
+      roomNr: data.roomNr,
+    }).then((res) => {
+      console.log(res.data);
+    });
   }
 
   return (
@@ -46,6 +58,7 @@ function FormPage() {
           <div className="row">
             <label htmlFor="mdate"> Manufacture Date</label>
             <input
+              className="date"
               onChange={(e) => handler(e)}
               value={data.dmanufacture}
               id="dmanufacture"
@@ -57,6 +70,7 @@ function FormPage() {
           <div className="row">
             <label htmlFor="dcontrol"> Date of Control</label>
             <input
+              className="date"
               onChange={(e) => handler(e)}
               value={data.dcontrol}
               id="dcontrol"
@@ -104,6 +118,7 @@ const Form = styled.div`
   justify-content: center;
   text-align: center;
   display: flex;
+
   .column {
     margin: 0 auto 2rem;
     min-width: 200px;
@@ -114,20 +129,30 @@ const Form = styled.div`
     flex-direction: row;
   }
   label {
+    display: flex;
+    align-items: center;
     margin: 1rem;
     font-size: 1.7rem;
   }
   input {
+    color: #344d67;
+    font-size: 1.4rem;
+    padding: 10px 20px;
     align-items: center;
     margin: 15px 10px 5px 0;
     border: 1px solid #344d67;
   }
   .option {
+    color: #344d67;
     font-size: 1.4rem;
-    align-items: center;
-    margin: 15px 10px 5px 0;
+    padding: 10px;
     border: 1px solid #344d67;
-    min-width: 173px;
+    min-width: 314px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  .date {
+    min-width: 314px;
   }
 `;
 
