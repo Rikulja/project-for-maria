@@ -1,8 +1,29 @@
 //Styled
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function FormPage() {
+  const [data, setData] = useState({
+    product: "",
+    dmanufacture: "",
+    dcontrol: "",
+    operator: "",
+    roomNr: "",
+  });
+
+  //functions
+
+  function handler(e) {
+    const newData = { ...data };
+    newData[e.target.id] = e.target.value;
+    setData(newData);
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+  }
+
   return (
     <div className="container">
       <h2>
@@ -10,27 +31,62 @@ function FormPage() {
       </h2>
       <h3>Ampoule Control</h3>
 
-      <Form>
+      <Form onSubmit={(e) => submitForm(e)}>
         <div className="column">
           <div className="row">
             <label htmlFor="pname">Product Name</label>
-            <input type="text" id="pname" name="pname" />
+            <input
+              onChange={(e) => handler(e)}
+              value={data.product}
+              id="product"
+              type="text"
+              name="pname"
+            />
           </div>
           <div className="row">
             <label htmlFor="mdate"> Manufacture Date</label>
-            <input type="text" name="mdate" />
+            <input
+              onChange={(e) => handler(e)}
+              value={data.dmanufacture}
+              id="dmanufacture"
+              required
+              type="date"
+              name="mdate"
+            />
           </div>
           <div className="row">
             <label htmlFor="dcontrol"> Date of Control</label>
-            <input type="text" name="dcontrol" />
+            <input
+              onChange={(e) => handler(e)}
+              value={data.dcontrol}
+              id="dcontrol"
+              required
+              type="date"
+              name="dcontrol"
+            />
           </div>
           <div className="row">
             <label htmlFor="operator"> Operator Name(s)</label>
-            <input type="text" name="operator" />
+            <select
+              onChange={(e) => handler(e)}
+              value={data.operator}
+              id="operator"
+              className="option"
+            >
+              <option value="operator1">Operator 1</option>
+              <option value="operator2">Operator 2</option>
+            </select>
           </div>
           <div className="row">
             <label htmlFor="room"> Room Nr</label>
-            <input type="text" name="room" />
+            <input
+              onChange={(e) => handler(e)}
+              value={data.roomNr}
+              id="roomNr"
+              required
+              type="number"
+              name="room"
+            />
           </div>
         </div>
 
@@ -64,7 +120,14 @@ const Form = styled.div`
   input {
     align-items: center;
     margin: 15px 10px 5px 0;
-    border: 2px solid #344d67;
+    border: 1px solid #344d67;
+  }
+  .option {
+    font-size: 1.4rem;
+    align-items: center;
+    margin: 15px 10px 5px 0;
+    border: 1px solid #344d67;
+    min-width: 173px;
   }
 `;
 
