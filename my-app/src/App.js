@@ -5,7 +5,7 @@ import TemporaryStorage from "./components/TemporaryStorage";
 //Global Style
 import GlobalStyle from "./components/GlobalStyle";
 //Import routes
-import { submitPage, loadValues } from "./storage";
+import { submitPage, loadValues, startCountdown } from "./storage";
 import {
   Route,
   createBrowserRouter,
@@ -22,9 +22,15 @@ const router = createBrowserRouter(
         loader={loadValues}
         element={<TemporaryStorage />}
       ></Route>
-      <Route path="/ampoule-vertical" exact element={<AmpoulePage />}></Route>
+      <Route
+        path="/ampoule-vertical"
+        action={startCountdown}
+        exact
+        element={<AmpoulePage />}
+      ></Route>
       <Route
         path="/countdown-vertical"
+        loader={loadValues}
         exact
         element={<CountdownPage />}
       ></Route>
