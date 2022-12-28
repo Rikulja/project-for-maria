@@ -1,6 +1,6 @@
 //Styled
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Form } from "react-router-dom";
 
 const AmpoulePage = () => {
   return (
@@ -9,18 +9,20 @@ const AmpoulePage = () => {
         Protocol nr <span>XN-N-XXX-NNN-XX-XX-XN</span>
       </h2>
       <h3>Ampoule Control</h3>
-      <Ampoule>
-        <h4>Place ampoules in one direction and leave them for NN minutes</h4>
-        <div className="glow">
-          Press when ampoule is placed in a right direction
-        </div>
-        <Checkmark>
-          <input type="checkbox" id="ampoule" name="ampoule"></input>
-        </Checkmark>
-        <Link to="/countdown-vertical">
-          <button>Start</button>
-        </Link>
-      </Ampoule>
+      <Form>
+        <Ampoule>
+          <h4>Place ampoules vertically and leave them for 1:00 minutes</h4>
+          <div className="glow">
+            Check when the ampoule is placed in the right direction
+          </div>
+          <Checkmark>
+            <input type="checkbox" id="ampoule" name="ampoule"></input>
+          </Checkmark>
+          <Link to="/countdown-vertical">
+            <button>Start</button>
+          </Link>
+        </Ampoule>
+      </Form>
     </div>
   );
 };
