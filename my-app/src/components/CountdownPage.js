@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router";
 import { Form } from "react-router-dom";
+import formatDuration from "format-duration";
 
 const CountdownPage = () => {
   const [time, setTime] = useState(1);
@@ -15,7 +16,7 @@ const CountdownPage = () => {
       const durationTime = 60;
       const timeElapsed = (currentTime - values.startTime) / 1000; //time has gone
       const timeRemaining = durationTime - timeElapsed;
-      setTime(timeRemaining);
+      setTime(Math.max(0, timeRemaining));
     }, 1000);
     return () => clearInterval(intervalId);
   }, [values.startTime]); //when values changed then it needs to reset the effect
@@ -28,7 +29,10 @@ const CountdownPage = () => {
       <h3>Ampoule Control</h3>
       <Form method="post">
         <Countdown>
-          <h4>The ampoules are placed vertically for {time} minutes</h4>
+          <h4>
+            The ampoules are placed vertically for {formatDuration(1000 * time)}
+            minutes
+          </h4>
           <div className="buttons">
             <button className="abort">Abort</button>
             <button>Next</button>
