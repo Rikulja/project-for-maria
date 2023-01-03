@@ -31,7 +31,6 @@ const AmpoulePage = () => {
               name="ampoule"
             ></input>
           </Checkmark>
-
           <button type="submit" disabled={!checked}>
             Start
           </button>
@@ -46,6 +45,9 @@ const Ampoule = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  button {
+    margin: 0 auto;
+  }
   .glow {
     font-style: italic;
     -webkit-animation: glow 1s ease-in-out infinite alternate;

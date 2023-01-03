@@ -2,6 +2,7 @@ import FormPage from "./components/FormPage";
 import AmpoulePage from "./components/AmpoulePage";
 import CountdownPage from "./components/CountdownPage";
 import TemporaryStorage from "./components/TemporaryStorage";
+import AmpouleTypesPage from "components/AmpouleTypesPage";
 //Global Style
 import GlobalStyle from "./components/GlobalStyle";
 //Import routes
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
         exact
         element={<CountdownPage />}
       ></Route>
+      <Route path="/ampoule-types" element={<AmpouleTypesPage />}></Route>
     </>
   )
 );

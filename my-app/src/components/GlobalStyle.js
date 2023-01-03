@@ -31,7 +31,7 @@ button {
     left: 50%;
     text-align:center;
     width:10vh;
-    margin:1rem auto;
+    margin-top:5rem ;
     padding: 0.5rem 2rem;
     background-color: #344d67;
     border: 1px solid #ddd;
@@ -63,7 +63,10 @@ h1{
     text-align: center;
     font-weight: 700;
     margin: 0 0 1.5rem;
-       
+    }
+    h4{
+      color:#d73851;
+      font-style:italic
     }
     span{
         color: rgb(21, 21, 21);
