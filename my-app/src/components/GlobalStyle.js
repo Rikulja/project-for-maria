@@ -45,6 +45,9 @@ button {
     background-color: dimgrey;
     color: linen;
     opacity: 1;
+    /* pointer-events: none; */
+    cursor :not-allowed;
+    
 }
   }
 
