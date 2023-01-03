@@ -1,31 +1,47 @@
 //Styled
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Form } from "react-router-dom";
+import { useState } from "react";
 
 const AmpoulePage = () => {
+  const [checked, setChecked] = useState(false);
+
+  function checkHandler() {
+    setChecked(!checked);
+  }
+
   return (
     <div className="container">
       <h2>
         Protocol nr <span>XN-N-XXX-NNN-XX-XX-XN</span>
       </h2>
       <h3>Ampoule Control</h3>
-      <Ampoule>
-        <h4>Place ampoules in one direction and leave them for NN minutes</h4>
-        <div className="glow">
-          Press when ampoule is placed in a right direction
-        </div>
-        <Checkmark>
-          <input type="checkbox" id="ampoule" name="ampoule"></input>
-        </Checkmark>
-        <Link to="/countdown-vertical">
-          <button>Start</button>
-        </Link>
-      </Ampoule>
+      <Form method="post">
+        <Ampoule>
+          <h4>Place ampoules vertically and leave them for 1:00 minutes</h4>
+          <div className="glow">
+            Check when the ampoule is placed in the right direction
+          </div>
+          <Checkmark>
+            <input
+              onChange={checkHandler}
+              checked={checked}
+              type="checkbox"
+              id="ampoule"
+              name="ampoule"
+            ></input>
+          </Checkmark>
+
+          <button type="submit" disabled={!checked}>
+            Start
+          </button>
+        </Ampoule>
+      </Form>
     </div>
   );
 };
 
-const Ampoule = styled.form`
+const Ampoule = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

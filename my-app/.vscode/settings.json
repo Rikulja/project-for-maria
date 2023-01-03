@@ -1,6 +1,9 @@
 {
   "editor.formatOnSave": true,
-  "editor.formatOnSaveMode": "modifications",
   "editor.formatOnPaste": false,
-  "prettier.embeddedLanguageFormatting": "auto"
+  "prettier.embeddedLanguageFormatting": "auto",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

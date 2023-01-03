@@ -41,6 +41,11 @@ button {
       border: 1px solid #d73851;
       color: #fff;
     }
+    &:disabled {
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
+}
   }
 
 h1{
