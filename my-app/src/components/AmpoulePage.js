@@ -18,7 +18,7 @@ const AmpoulePage = () => {
       <h3>Ampoule Control</h3>
       <Form method="post">
         <Ampoule>
-          <h4>Place ampoules vertically and leave them for 1:00 minutes</h4>
+          <h4>Place ampoules vertically and leave them for 01:00 minutes</h4>
           <div className="glow">
             Check when the ampoule is placed in the right direction
           </div>
@@ -31,7 +31,6 @@ const AmpoulePage = () => {
               name="ampoule"
             ></input>
           </Checkmark>
-
           <button type="submit" disabled={!checked}>
             Start
           </button>
@@ -46,6 +45,9 @@ const Ampoule = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  button {
+    margin: 0 auto;
+  }
   .glow {
     font-style: italic;
     -webkit-animation: glow 1s ease-in-out infinite alternate;

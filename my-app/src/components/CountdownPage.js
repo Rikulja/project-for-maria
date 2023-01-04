@@ -9,16 +9,21 @@ import formatDuration from "format-duration";
 const CountdownPage = () => {
   const [time, setTime] = useState(1);
   const values = useLoaderData();
+  const isFinished = time === 0;
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    const updateTime = () => {
       const currentTime = Date.now();
-      const durationTime = 60;
+      const durationTime = 10;
       const timeElapsed = (currentTime - values.startTime) / 1000; //time has gone
       const timeRemaining = durationTime - timeElapsed;
       setTime(Math.max(0, timeRemaining));
-    }, 1000);
-    return () => clearInterval(intervalId);
+    };
+    updateTime();
+    const intervalId = setInterval(updateTime, 1000);
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [values.startTime]); //when values changed then it needs to reset the effect
 
   return (
@@ -30,12 +35,15 @@ const CountdownPage = () => {
       <Form method="post">
         <Countdown>
           <h4>
-            The ampoules are placed vertically for {formatDuration(1000 * time)}
-            minutes
+            The ampoules are placed vertically for &nbsp;{" "}
+            <span> {formatDuration(1000 * time, { leading: true })}</span>
+            &nbsp; minutes
           </h4>
           <div className="buttons">
             <button className="abort">Abort</button>
-            <button>Next</button>
+            <button type="submit" disabled={!isFinished}>
+              Next
+            </button>
           </div>
         </Countdown>
       </Form>
@@ -48,6 +56,12 @@ const Countdown = styled.div`
   justify-content: center;
   text-align: center;
   font-style: italic;
+  span {
+    font-size: 2rem;
+    color: #2c3639;
+    text-shadow: -1px 0px 0px white, 1px 0px 0px white, 0px -1px 0px white,
+      0px 1px 0px white;
+  }
   .buttons {
     flex-direction: row;
     button {

@@ -90,8 +90,8 @@ function FormPage() {
                 name="room"
               />
             </div>
+            <button type="submit">Next</button>
           </div>
-          <button type="submit">Next</button>
         </StyledForm>
       </Form>
     </div>
