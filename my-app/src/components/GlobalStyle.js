@@ -71,9 +71,7 @@ h1{
       color:#d73851;
       font-style:italic
     }
-    span{
-        color: rgb(21, 21, 21);
-    }
+  
     p{
         padding: 3rem 0rem;
         color: #ccc;
