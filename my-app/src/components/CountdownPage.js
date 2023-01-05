@@ -5,8 +5,12 @@ import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router";
 import { Form } from "react-router-dom";
 import formatDuration from "format-duration";
+import { FaInfo } from "react-icons/fa";
+//components
+import PopupModal from "./PopupModal";
 
 const CountdownPage = () => {
+  const [openModal, setOpenModal] = useState(false);
   const [time, setTime] = useState(1);
   const values = useLoaderData();
   const isFinished = time === 0;
@@ -14,7 +18,7 @@ const CountdownPage = () => {
   useEffect(() => {
     const updateTime = () => {
       const currentTime = Date.now();
-      const durationTime = 10;
+      const durationTime = 30;
       const timeElapsed = (currentTime - values.startTime) / 1000; //time has gone
       const timeRemaining = durationTime - timeElapsed;
       setTime(Math.max(0, timeRemaining));
@@ -32,28 +36,36 @@ const CountdownPage = () => {
         Protocol nr <span>XN-N-XXX-NNN-XX-XX-XN</span>
       </h2>
       <h3>Ampoule Control</h3>
-      <Form method="post">
-        <Countdown>
+      <Countdown>
+        <Form method="post">
           <h4>
-            The ampoules are placed vertically for &nbsp;{" "}
+            The ampoules are placed vertically for &nbsp;
             <span> {formatDuration(1000 * time, { leading: true })}</span>
             &nbsp; minutes
           </h4>
-          <div className="buttons">
-            <button
-              className="abort"
-              onClick={() => {
-                window.confirm("Are you sure you want to stop the process?");
-              }}
-            >
-              Abort
-            </button>
-            <button type="submit" disabled={!isFinished}>
-              Next
-            </button>
-          </div>
-        </Countdown>
-      </Form>
+          <i>
+            (a screen is now locked for NN minutes, so that no interference can
+            be made)
+          </i>
+          {/* <div class="info">
+            <FaInfo />
+            <span class="extra-info">
+              A little column extra info. Aaand just a little bitmore
+            </span>
+          </div> */}
+        </Form>
+      </Countdown>
+      <Countdown>
+        <div className="buttons">
+          <button className="abort" onClick={() => setOpenModal(true)}>
+            Abort
+          </button>
+          <button type="submit" disabled={!isFinished}>
+            Next
+          </button>
+        </div>
+        {openModal && <PopupModal closeModal={setOpenModal} />}
+      </Countdown>
     </div>
   );
 };
@@ -63,11 +75,36 @@ const Countdown = styled.div`
   justify-content: center;
   text-align: center;
   font-style: italic;
+  align-items: center;
   span {
     font-size: 2rem;
     color: #2c3639;
     text-shadow: -1px 0px 0px white, 1px 0px 0px white, 0px -1px 0px white,
       0px 1px 0px white;
+  }
+  .info {
+    font-size: 20px;
+    padding-left: 5px;
+    width: 20px;
+    border-radius: 15px;
+
+    .info:hover {
+      background-color: white;
+      padding: 0 0 0 5px;
+      width: 315px;
+      text-align: left !important;
+    }
+  }
+  .extra-info {
+    display: none;
+    line-height: 30px;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    left: 50px;
+  }
+  .info:hover .extra-info {
+    display: block;
   }
   .buttons {
     flex-direction: row;
@@ -79,6 +116,9 @@ const Countdown = styled.div`
       &:hover {
         border: 1px solid royalblue;
       }
+    }
+    * {
+      transition: all 0.2s ease;
     }
   }
 `;
