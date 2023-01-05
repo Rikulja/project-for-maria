@@ -23,78 +23,71 @@ function FormPage() {
   }
 
   return (
-    <div className="container">
-      <h2>
-        Protocol nr <span>XN-N-XXX-NNN-XX-XX-XN</span>
-      </h2>
-      <h3>Ampoule Control</h3>
-
-      <Form method="post">
-        <StyledForm>
-          <div className="column">
-            <div className="row">
-              <label htmlFor="pname">Product Name</label>
-              <input
-                onChange={(e) => handler(e)}
-                value={data.product}
-                id="product"
-                type="text"
-                name="pname"
-              />
-            </div>
-            <div className="row">
-              <label htmlFor="mdate"> Manufacture Date</label>
-              <input
-                className="date"
-                onChange={(e) => handler(e)}
-                value={data.dmanufacture}
-                id="dmanufacture"
-                required
-                type="date"
-                name="mdate"
-              />
-            </div>
-            <div className="row">
-              <label htmlFor="dcontrol"> Date of Control</label>
-              <input
-                className="date"
-                onChange={(e) => handler(e)}
-                value={data.dcontrol}
-                id="dcontrol"
-                required
-                type="date"
-                name="dcontrol"
-              />
-            </div>
-            <div className="row">
-              <label htmlFor="operator"> Operator Name(s)</label>
-              <select
-                onChange={(e) => handler(e)}
-                value={data.operator}
-                id="operator"
-                className="option"
-                name="operator"
-              >
-                <option value="operator1">Operator 1</option>
-                <option value="operator2">Operator 2</option>
-              </select>
-            </div>
-            <div className="row">
-              <label htmlFor="room"> Room Nr</label>
-              <input
-                onChange={(e) => handler(e)}
-                value={data.roomNr}
-                id="roomNr"
-                required
-                type="number"
-                name="room"
-              />
-            </div>
-            <button type="submit">Next</button>
+    <Form method="post">
+      <StyledForm>
+        <div className="column">
+          <div className="row">
+            <label htmlFor="pname">Product Name</label>
+            <input
+              onChange={(e) => handler(e)}
+              value={data.product}
+              id="product"
+              type="text"
+              name="pname"
+            />
           </div>
-        </StyledForm>
-      </Form>
-    </div>
+          <div className="row">
+            <label htmlFor="mdate"> Manufacture Date</label>
+            <input
+              className="date"
+              onChange={(e) => handler(e)}
+              value={data.dmanufacture}
+              id="dmanufacture"
+              required
+              type="date"
+              name="mdate"
+            />
+          </div>
+          <div className="row">
+            <label htmlFor="dcontrol"> Date of Control</label>
+            <input
+              className="date"
+              onChange={(e) => handler(e)}
+              value={data.dcontrol}
+              id="dcontrol"
+              required
+              type="date"
+              name="dcontrol"
+            />
+          </div>
+          <div className="row">
+            <label htmlFor="operator"> Operator Name(s)</label>
+            <select
+              onChange={(e) => handler(e)}
+              value={data.operator}
+              id="operator"
+              className="option"
+              name="operator"
+            >
+              <option value="operator1">Operator 1</option>
+              <option value="operator2">Operator 2</option>
+            </select>
+          </div>
+          <div className="row">
+            <label htmlFor="room"> Room Nr</label>
+            <input
+              onChange={(e) => handler(e)}
+              value={data.roomNr}
+              id="roomNr"
+              required
+              type="number"
+              name="room"
+            />
+          </div>
+          <button type="submit">Next</button>
+        </div>
+      </StyledForm>
+    </Form>
   );
 }
 

@@ -18,7 +18,7 @@ export default function PopupModal({ closeModal }) {
         </button>
         <button
           onClick={() => {
-            if (window.confirm("Are you sure to delete this record?")) {
+            if (window.confirm("Are you sure you want to stop the process?")) {
               <input type="password" minlength="3" maxlength="7" required />;
             }
           }}

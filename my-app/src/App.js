@@ -4,6 +4,7 @@ import CountdownPage from "./components/CountdownPage";
 import TemporaryStorage from "./components/TemporaryStorage";
 import AmpouleTypesPage from "components/AmpouleTypesPage";
 import ErrorPage from "components/ErrorPage";
+import ParentComponent from "components/ParentComponent";
 
 //Global Style
 import GlobalStyle from "./components/GlobalStyle";
@@ -18,7 +19,7 @@ import {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" errorElement={<ErrorPage />}>
+    <Route element={<ParentComponent />} path="/" errorElement={<ErrorPage />}>
       <Route index exact action={submitPage} element={<FormPage />}></Route>
       <Route
         path="temporary"

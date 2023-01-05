@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router";
 import { Form } from "react-router-dom";
 import formatDuration from "format-duration";
-import { FaInfo } from "react-icons/fa";
+// import { FaInfo } from "react-icons/fa";
 //components
 import PopupModal from "./PopupModal";
 
@@ -31,11 +31,7 @@ const CountdownPage = () => {
   }, [values.startTime]); //when values changed then it needs to reset the effect
 
   return (
-    <div className="container">
-      <h2>
-        Protocol nr <span>XN-N-XXX-NNN-XX-XX-XN</span>
-      </h2>
-      <h3>Ampoule Control</h3>
+    <>
       <Countdown>
         <Form method="post">
           <h4>
@@ -66,7 +62,7 @@ const CountdownPage = () => {
         </div>
         {openModal && <PopupModal closeModal={setOpenModal} />}
       </Countdown>
-    </div>
+    </>
   );
 };
 const Countdown = styled.div`
