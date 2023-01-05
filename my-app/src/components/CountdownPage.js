@@ -40,7 +40,14 @@ const CountdownPage = () => {
             &nbsp; minutes
           </h4>
           <div className="buttons">
-            <button className="abort">Abort</button>
+            <button
+              className="abort"
+              onClick={() => {
+                window.confirm("Are you sure you want to stop the process?");
+              }}
+            >
+              Abort
+            </button>
             <button type="submit" disabled={!isFinished}>
               Next
             </button>
