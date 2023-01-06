@@ -13,20 +13,19 @@ const AmpouleTypesPage = () => {
         <div className="column">
           <div className="row">
             <input type="number" name="typeA" />
-            <label htmlFor="typeA">Type A ampoules </label>
+            <label htmlFor="typeA">Sum of types of ampoules</label>
           </div>
           <div className="row">
             <input type="number" name="typeB" />
-            <label htmlFor="typeB">Type B ampoules</label>
+            <label htmlFor="typeB">% of types of ampoules</label>
           </div>
-          <div className="row">
-            <input type="number" name="typeC" />
-            <label htmlFor="typeC">Type C ampoules</label>
-          </div>
-          <div className="row">
-            <input type="number" name="other" />
-            <label htmlFor="other">Other ampoules</label>
-          </div>
+
+          <button>Result OK/NOK</button>
+        </div>
+        <div>
+          <button type="submit">Sign</button>
+        </div>
+        <div>
           <button type="submit">Next</button>
         </div>
       </StyledForm>

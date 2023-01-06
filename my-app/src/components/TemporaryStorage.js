@@ -10,8 +10,9 @@ const TemporaryStorage = () => {
       <div>Date of Control:{values.dcontrol} </div>
       <div>Operator Name: {values.operator}</div>
       <div>Room Nr: {values.room}</div>
-      <div>Verical : {values.vertical}</div>
-      <div>Horizontal : {values.horizontal}</div>
+      <div>Vertical : {values.vertical ? "true" : "false"}</div>
+      <div>Horizontal : {values.horizontal ? "true" : "false"}</div>
+      <div>types: {JSON.stringify(values.types)}</div>
     </div>
   );
 };

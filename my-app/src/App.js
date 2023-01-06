@@ -4,10 +4,21 @@ import CountdownPage from "./components/CountdownPage";
 import TemporaryStorage from "./components/TemporaryStorage";
 import AmpouleTypesPage from "components/AmpouleTypesPage";
 import ErrorPage from "components/ErrorPage";
+import ParentComponent from "components/ParentComponent";
+import Decision from "components/Decision";
+import FormulaPage from "components/FormulaPage";
+
 //Global Style
 import GlobalStyle from "./components/GlobalStyle";
 //Import routes
-import { submitPage, loadValues, startCountdown } from "./storage";
+import {
+  submitPage,
+  loadValues,
+  startCountdown,
+  nextDirection,
+  submitTypes,
+  submitDecision,
+} from "./storage";
 import {
   Route,
   createBrowserRouter,
@@ -17,34 +28,37 @@ import {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
+    <Route element={<ParentComponent />} path="/" errorElement={<ErrorPage />}>
+      <Route index exact action={submitPage} element={<FormPage />}></Route>
       <Route
-        path="/"
-        exact
-        action={submitPage}
-        element={<FormPage />}
-        errorElement={<ErrorPage />}
-      ></Route>
-
-      <Route
-        path="/temporary"
+        path="temporary"
         loader={loadValues}
         element={<TemporaryStorage />}
       ></Route>
       <Route
-        path="/ampoule-vertical"
+        path="ampoule/:direction"
         action={startCountdown}
-        exact
         element={<AmpoulePage />}
       ></Route>
+
       <Route
-        path="/countdown-vertical"
+        path="countdown/:direction"
+        action={nextDirection}
         loader={loadValues}
-        exact
         element={<CountdownPage />}
       ></Route>
-      <Route path="/ampoule-types" element={<AmpouleTypesPage />}></Route>
-    </>
+      <Route
+        action={submitTypes}
+        path="ampoule-types"
+        element={<AmpouleTypesPage />}
+      ></Route>
+      <Route
+        path="decision"
+        action={submitDecision}
+        element={<Decision />}
+      ></Route>
+      <Route path="formula" element={<FormulaPage />}></Route>
+    </Route>
   )
 );
 
