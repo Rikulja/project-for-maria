@@ -57,7 +57,11 @@ const router = createBrowserRouter(
         action={submitDecision}
         element={<Decision />}
       ></Route>
-      <Route path="formula" element={<FormulaPage />}></Route>
+      <Route
+        loader={loadValues}
+        path="formula"
+        element={<FormulaPage />}
+      ></Route>
     </Route>
   )
 );
