@@ -6,6 +6,7 @@ import AmpouleTypesPage from "components/AmpouleTypesPage";
 import ErrorPage from "components/ErrorPage";
 import ParentComponent from "components/ParentComponent";
 import Decision from "components/Decision";
+import FormulaPage from "components/FormulaPage";
 
 //Global Style
 import GlobalStyle from "./components/GlobalStyle";
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
         element={<AmpouleTypesPage />}
       ></Route>
       <Route path="decision" element={<Decision />}></Route>
+      <Route path="formula" element={<FormulaPage />}></Route>
     </Route>
   )
 );

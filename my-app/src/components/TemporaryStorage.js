@@ -1,4 +1,4 @@
-import { json, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 
 const TemporaryStorage = () => {
   const values = useLoaderData(); //use react router hook, we want get a lodaer data
