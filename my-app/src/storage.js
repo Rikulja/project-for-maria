@@ -33,3 +33,16 @@ export async function nextDirection({ params }) {
   }
   return redirect(`/ampoule-types`);
 }
+
+export async function submitTypes({ request, params }) {
+  const formData = Object.fromEntries(await request.formData());
+  const values = await loadValues();
+  values.types = {
+    typeA: parseInt(formData.typeA, 10) || 0,
+    typeB: parseInt(formData.typeB, 10) || 0,
+    typeC: parseInt(formData.typeC, 10) || 0,
+    other: parseInt(formData.other, 10) || 0,
+  };
+  await saveValues(values);
+  return redirect(`/decision`);
+}

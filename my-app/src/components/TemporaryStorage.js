@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { json, useLoaderData } from "react-router";
 
 const TemporaryStorage = () => {
   const values = useLoaderData(); //use react router hook, we want get a lodaer data
@@ -10,8 +10,9 @@ const TemporaryStorage = () => {
       <div>Date of Control:{values.dcontrol} </div>
       <div>Operator Name: {values.operator}</div>
       <div>Room Nr: {values.room}</div>
-      <div>Vertical : {values.vertical}</div>
-      <div>Horizontal : {values.horizontal}</div>
+      <div>Vertical : {values.vertical ? "true" : "false"}</div>
+      <div>Horizontal : {values.horizontal ? "true" : "false"}</div>
+      <div>types: {JSON.stringify(values.types)}</div>
     </div>
   );
 };

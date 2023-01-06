@@ -15,6 +15,7 @@ import {
   loadValues,
   startCountdown,
   nextDirection,
+  submitTypes,
 } from "./storage";
 import {
   Route,
@@ -44,7 +45,11 @@ const router = createBrowserRouter(
         loader={loadValues}
         element={<CountdownPage />}
       ></Route>
-      <Route path="ampoule-types" element={<AmpouleTypesPage />}></Route>
+      <Route
+        action={submitTypes}
+        path="ampoule-types"
+        element={<AmpouleTypesPage />}
+      ></Route>
       <Route path="decision" element={<Decision />}></Route>
     </Route>
   )
