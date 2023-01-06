@@ -5,11 +5,17 @@ import TemporaryStorage from "./components/TemporaryStorage";
 import AmpouleTypesPage from "components/AmpouleTypesPage";
 import ErrorPage from "components/ErrorPage";
 import ParentComponent from "components/ParentComponent";
+import Decision from "components/Decision";
 
 //Global Style
 import GlobalStyle from "./components/GlobalStyle";
 //Import routes
-import { submitPage, loadValues, startCountdown } from "./storage";
+import {
+  submitPage,
+  loadValues,
+  startCountdown,
+  nextDirection,
+} from "./storage";
 import {
   Route,
   createBrowserRouter,
@@ -27,18 +33,19 @@ const router = createBrowserRouter(
         element={<TemporaryStorage />}
       ></Route>
       <Route
-        path="ampoule-vertical"
+        path="ampoule/:direction"
         action={startCountdown}
-        exact
         element={<AmpoulePage />}
       ></Route>
+
       <Route
-        path="countdown-vertical"
+        path="countdown/:direction"
+        action={nextDirection}
         loader={loadValues}
-        exact
         element={<CountdownPage />}
       ></Route>
       <Route path="ampoule-types" element={<AmpouleTypesPage />}></Route>
+      <Route path="decision" element={<Decision />}></Route>
     </Route>
   )
 );

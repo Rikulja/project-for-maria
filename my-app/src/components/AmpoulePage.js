@@ -1,10 +1,14 @@
 //Styled
 import styled from "styled-components";
-import { Form } from "react-router-dom";
+import { Form, useParams } from "react-router-dom";
 import { useState } from "react";
 
 const AmpoulePage = () => {
   const [checked, setChecked] = useState(false);
+  const { direction } = useParams();
+  const isVertical = direction === "vertical";
+  const time = isVertical ? "00:15" : "00:20";
+  const position = isVertical ? "vertically" : "horizontally";
 
   function checkHandler() {
     setChecked(!checked);
@@ -13,7 +17,9 @@ const AmpoulePage = () => {
   return (
     <Form method="post">
       <Ampoule>
-        <h4>Place ampoules vertically and leave them for 01:00 minutes</h4>
+        <h4>
+          Place ampoules {position} and leave them for {time} minutes
+        </h4>
         <div className="glow">
           Check when the ampoule is placed in the right direction
         </div>

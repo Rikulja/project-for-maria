@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router";
-import { Form } from "react-router-dom";
+import { Form, useParams } from "react-router-dom";
 import formatDuration from "format-duration";
 // import { FaInfo } from "react-icons/fa";
 //components
@@ -14,11 +14,14 @@ const CountdownPage = () => {
   const [time, setTime] = useState(1);
   const values = useLoaderData();
   const isFinished = time === 0;
+  const { direction } = useParams();
+  const isVertical = direction === "vertical";
+  const position = isVertical ? "vertically" : "horizontally";
+  const durationTime = isVertical ? 15 : 25;
 
   useEffect(() => {
     const updateTime = () => {
       const currentTime = Date.now();
-      const durationTime = 30;
       const timeElapsed = (currentTime - values.startTime) / 1000; //time has gone
       const timeRemaining = durationTime - timeElapsed;
       setTime(Math.max(0, timeRemaining));
@@ -28,14 +31,14 @@ const CountdownPage = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [values.startTime]); //when values changed then it needs to reset the effect
+  }, [values.startTime, durationTime]); //when values changed then it needs to reset the effect
 
   return (
     <>
       <Countdown>
         <Form method="post">
           <h4>
-            The ampoules are placed vertically for &nbsp;
+            The ampoules are placed {position} for &nbsp;
             <span> {formatDuration(1000 * time, { leading: true })}</span>
             &nbsp; minutes
           </h4>
@@ -51,17 +54,25 @@ const CountdownPage = () => {
           </div> */}
         </Form>
       </Countdown>
-      <Countdown>
-        <div className="buttons">
-          <button className="abort" onClick={() => setOpenModal(true)}>
-            Abort
-          </button>
-          <button type="submit" disabled={!isFinished}>
-            Next
-          </button>
-        </div>
-        {openModal && <PopupModal closeModal={setOpenModal} />}
-      </Countdown>
+      <Form method="post">
+        <Countdown>
+          <div className="buttons">
+            <button
+              className="abort"
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenModal(true);
+              }}
+            >
+              Abort
+            </button>
+            <button type="submit" disabled={!isFinished}>
+              Next
+            </button>
+          </div>
+          {openModal && <PopupModal closeModal={setOpenModal} />}
+        </Countdown>
+      </Form>
     </>
   );
 };

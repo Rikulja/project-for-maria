@@ -8,7 +8,7 @@ async function saveValues(values) {
 export async function submitPage({ request, params }) {
   const formData = Object.fromEntries(await request.formData()); //method transforms a list of key-value pairs into an object.
   await saveValues(formData);
-  return redirect(`/ampoule-vertical`);
+  return redirect(`/ampoule/vertical`);
 }
 
 export async function loadValues() {
@@ -16,10 +16,17 @@ export async function loadValues() {
   return JSON.parse(storage.getItem("store"));
 }
 
-export async function startCountdown() {
+export async function startCountdown({ params }) {
   const values = await loadValues();
   const start = Date.now();
   values.startTime = start;
   await saveValues(values);
-  return redirect(`/countdown-vertical`);
+  return redirect(`/countdown/${params.direction}`);
+}
+
+export async function nextDirection({ params }) {
+  const values = await loadValues();
+  values[params.direction] = true;
+  await saveValues(values);
+  return redirect(`/ampoule/horizontal`);
 }
