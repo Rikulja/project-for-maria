@@ -1,14 +1,9 @@
 import styled from "styled-components";
 import { Form } from "react-router-dom";
-import { useLoaderData } from "react-router";
+import { useFormula } from "storage";
 
 const FormulaPage = () => {
-  const values = useLoaderData();
-  const { typeA, typeB, typeC, other } = values.types;
-  const sum = typeA + typeB + typeC + other;
-  const percentage = (100 * (typeB + typeC + other)) / typeA;
-  const result = percentage <= 10;
-
+  const { sum, percentage, result } = useFormula();
   return (
     <Form method="post">
       <StyledForm>

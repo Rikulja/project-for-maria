@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router";
+import { useFormula } from "storage";
 
 const TemporaryStorage = () => {
   const values = useLoaderData(); //use react router hook, we want get a lodaer data
@@ -13,6 +14,7 @@ const TemporaryStorage = () => {
       <div>Vertical : {values.vertical ? "true" : "false"}</div>
       <div>Horizontal : {values.horizontal ? "true" : "false"}</div>
       <div>types: {JSON.stringify(values.types)}</div>
+      <div>formulaResult: {JSON.stringify(useFormula())}</div>
     </div>
   );
 };
