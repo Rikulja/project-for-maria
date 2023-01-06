@@ -7,6 +7,7 @@ import ErrorPage from "components/ErrorPage";
 import ParentComponent from "components/ParentComponent";
 import Decision from "components/Decision";
 import FormulaPage from "components/FormulaPage";
+import PrintPage from "components/PrintPage";
 
 //Global Style
 import GlobalStyle from "./components/GlobalStyle";
@@ -62,6 +63,7 @@ const router = createBrowserRouter(
         path="formula"
         element={<FormulaPage />}
       ></Route>
+      <Route path="print" element={<PrintPage />}></Route>
     </Route>
   )
 );
