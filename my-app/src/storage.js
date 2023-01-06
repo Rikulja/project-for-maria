@@ -28,5 +28,8 @@ export async function nextDirection({ params }) {
   const values = await loadValues();
   values[params.direction] = true;
   await saveValues(values);
-  return redirect(`/ampoule/horizontal`);
+  if (params.direction === "vertical") {
+    return redirect(`/ampoule/horizontal`);
+  }
+  return redirect(`/ampoule-types`);
 }
