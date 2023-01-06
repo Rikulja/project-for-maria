@@ -1,8 +1,16 @@
+import { Form } from "react-router-dom";
+
 export default function Decision() {
   return (
-    <div>
-      <button>Finish/Print</button>
-      <button>Place New Ampoule</button>
-    </div>
+    <Form method="post">
+      <div>
+        <button type="submit" name="finish">
+          Finish/Print
+        </button>
+        <button type="submit" name="new">
+          Place New Ampoule
+        </button>
+      </div>
+    </Form>
   );
 }

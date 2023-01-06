@@ -17,6 +17,7 @@ import {
   startCountdown,
   nextDirection,
   submitTypes,
+  submitDecision,
 } from "./storage";
 import {
   Route,
@@ -51,7 +52,11 @@ const router = createBrowserRouter(
         path="ampoule-types"
         element={<AmpouleTypesPage />}
       ></Route>
-      <Route path="decision" element={<Decision />}></Route>
+      <Route
+        path="decision"
+        action={submitDecision}
+        element={<Decision />}
+      ></Route>
       <Route path="formula" element={<FormulaPage />}></Route>
     </Route>
   )

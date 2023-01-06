@@ -46,3 +46,11 @@ export async function submitTypes({ request, params }) {
   await saveValues(values);
   return redirect(`/decision`);
 }
+
+export async function submitDecision({ request }) {
+  const formData = Object.fromEntries(await request.formData());
+  if ("new" in formData) {
+    return redirect(`/`);
+  }
+  return redirect(`/formula`);
+}
