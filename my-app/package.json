@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "docx": "^7.8.2",
+    "file-saver": "^2.0.5",
     "format-duration": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
