@@ -76,6 +76,10 @@ export async function submitDecision({ request }) {
   return redirect(isNewAmpoule ? `/` : `/formula`);
 }
 
+export async function submitFormula() {
+  return redirect("/print");
+}
+
 export function useFormula() {
   const values = useLoaderData();
   if (!values.types) {

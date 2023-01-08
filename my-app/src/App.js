@@ -19,6 +19,7 @@ import {
   nextDirection,
   submitTypes,
   submitDecision,
+  submitFormula,
 } from "./storage";
 import {
   Route,
@@ -69,6 +70,7 @@ const router = createBrowserRouter(
       ></Route>
       <Route
         loader={loadValues}
+        action={submitFormula}
         path="formula"
         element={<FormulaPage />}
       ></Route>
