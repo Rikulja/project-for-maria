@@ -23,7 +23,8 @@ export async function submitPage({ request, params }) {
 
 export async function loadValues() {
   const storage = window.localStorage;
-  return JSON.parse(storage.getItem("store"));
+  const values = JSON.parse(storage.getItem("store"));
+  return values || {}; // Return parsed values or default to an empty object if no values exist
 }
 
 export async function startCountdown({ params }) {
