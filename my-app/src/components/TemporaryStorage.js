@@ -3,11 +3,11 @@ import { useFormula } from "storage";
 
 const TemporaryStorage = () => {
   const values = useLoaderData(); //use react router hook, we want get a lodaer data
-  console.log("HAHA", values.ampoules);
+  const ampoules = values.ampoules || []; // The list of ampoules (default to empty list)
   return (
     <div>
       <AmpouleInfo values={values.current} />
-      {values.ampoules.map((value) => (
+      {ampoules.map((value) => (
         <AmpouleInfo values={value} />
       ))}
       <div>types: {JSON.stringify(values.types)}</div>
