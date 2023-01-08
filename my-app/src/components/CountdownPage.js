@@ -18,7 +18,7 @@ const CountdownPage = () => {
   const { direction } = useParams();
   const isVertical = direction === "vertical";
   const position = isVertical ? "vertically" : "horizontally";
-  const durationTime = isVertical ? 15 : 25;
+  const durationTime = isVertical ? 2 : 4;
 
   useEffect(() => {
     const updateTime = () => {

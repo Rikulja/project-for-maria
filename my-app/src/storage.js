@@ -13,8 +13,11 @@ async function saveValues(values) {
 
 export async function submitPage({ request, params }) {
   const formData = Object.fromEntries(await request.formData()); //method transforms a list of key-value pairs into an object.
-  formData.currentPage = "/ampoule/vertical";
-  await saveValues(formData);
+  const values = await loadValues();
+  values.currentPage = "/ampoule/vertical";
+  values.current = formData;
+
+  await saveValues(values);
   return redirect(`/ampoule/vertical`);
 }
 
@@ -33,10 +36,18 @@ export async function startCountdown({ params }) {
 }
 
 export async function nextDirection({ params }) {
+  const isVertical = params.direction === "vertical";
   const values = await loadValues();
-  values[params.direction] = true;
-  values.currentPage =
-    params.direction === "vertical" ? `/ampoule/horizontal` : `/ampoule-types`;
+
+  values.currentPage = isVertical ? `/ampoule/horizontal` : `/ampoule-types`;
+  if (!isVertical) {
+    if (!values.ampoules) {
+      values.ampoules = [];
+    }
+    values.ampoules = [...values.ampoules, values.current];
+    values.current = null;
+  }
+  console.log("kak", values);
   await saveValues(values);
   return redirect(values.currentPage);
 }
@@ -85,7 +96,7 @@ export function useRedirectIfNecessary() {
   const values = useLoaderData();
   const currentPath = useLocation().pathname;
   const navigate = useNavigate();
-  const currentPage = values.currentPage;
+  const currentPage = values ? values.currentPage : null;
 
   useEffect(() => {
     if (currentPage && currentPage !== currentPath) {
