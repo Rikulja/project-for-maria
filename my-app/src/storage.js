@@ -105,3 +105,11 @@ export function useRedirectIfNecessary() {
     }
   }, [currentPage, currentPath, navigate]);
 }
+
+export function useAmpouleTaskInfo(direction) {
+  const isVertical = direction === "vertical";
+  return {
+    position: isVertical ? "vertically" : "horizontally",
+    durationTime: isVertical ? 2 : 4,
+  };
+}

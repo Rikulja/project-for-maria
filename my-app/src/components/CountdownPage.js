@@ -8,7 +8,7 @@ import formatDuration from "format-duration";
 // import { FaInfo } from "react-icons/fa";
 //components
 import PopupModal from "./PopupModal";
-import { useRedirectIfNecessary } from "storage";
+import { useAmpouleTaskInfo, useRedirectIfNecessary } from "storage";
 
 const CountdownPage = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -16,9 +16,7 @@ const CountdownPage = () => {
   const values = useLoaderData();
   const isFinished = time === 0;
   const { direction } = useParams();
-  const isVertical = direction === "vertical";
-  const position = isVertical ? "vertically" : "horizontally";
-  const durationTime = isVertical ? 2 : 4;
+  const { position, durationTime } = useAmpouleTaskInfo(direction);
 
   useEffect(() => {
     const updateTime = () => {
