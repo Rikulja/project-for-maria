@@ -1,4 +1,5 @@
 import { redirect } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 async function saveValues(values) {
   const storage = window.localStorage;
@@ -53,4 +54,21 @@ export async function submitDecision({ request }) {
     return redirect(`/`);
   }
   return redirect(`/formula`);
+}
+
+export function useFormula() {
+  const values = useLoaderData();
+  if (!values.types) {
+    return {};
+  }
+  const { typeA, typeB, typeC, other } = values.types;
+  const sum = typeA + typeB + typeC + other;
+  const percentage = (100 * (typeB + typeC + other)) / typeA;
+  const result = percentage <= 10;
+  return {
+    sum,
+    percentage,
+    result,
+    resultText: result ? "OK" : "NOK",
+  };
 }

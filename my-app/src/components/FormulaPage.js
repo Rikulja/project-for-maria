@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Form } from "react-router-dom";
-// import { useState } from "react";
+import { useFormula } from "storage";
 
-const AmpouleTypesPage = () => {
+const FormulaPage = () => {
+  const { sum, percentage, result } = useFormula();
   return (
     <Form method="post">
       <StyledForm>
@@ -12,15 +13,15 @@ const AmpouleTypesPage = () => {
         </h4>
         <div className="column">
           <div className="row">
-            <input type="number" name="typeA" />
+            <input type="number" disabled value={sum} />
             <label htmlFor="typeA">Sum of types of ampoules</label>
           </div>
           <div className="row">
-            <input type="number" name="typeB" />
+            <input type="number" disabled value={percentage} />
             <label htmlFor="typeB">% of types of ampoules</label>
           </div>
 
-          <button>Result OK/NOK</button>
+          <button>Result {result ? "OK" : "NOK"}</button>
         </div>
         <div>
           <button type="submit">Sign</button>
@@ -65,4 +66,4 @@ const StyledForm = styled.div`
     border: 1px solid #344d67;
   }
 `;
-export default AmpouleTypesPage;
+export default FormulaPage;
