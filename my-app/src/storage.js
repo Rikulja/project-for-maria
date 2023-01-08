@@ -97,10 +97,10 @@ export function useRedirectIfNecessary() {
   const values = useLoaderData();
   const currentPath = useLocation().pathname;
   const navigate = useNavigate();
-  const currentPage = values ? values.currentPage : null;
+  const currentPage = values.currentPage || "/"; // Default to / if no page is stored.
 
   useEffect(() => {
-    if (currentPage && currentPage !== currentPath) {
+    if (currentPage !== currentPath) {
       navigate(currentPage);
     }
   }, [currentPage, currentPath, navigate]);
