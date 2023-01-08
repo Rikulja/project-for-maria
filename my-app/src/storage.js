@@ -58,6 +58,9 @@ export async function submitDecision({ request }) {
 
 export function useFormula() {
   const values = useLoaderData();
+  if (!values.types) {
+    return {};
+  }
   const { typeA, typeB, typeC, other } = values.types;
   const sum = typeA + typeB + typeC + other;
   const percentage = (100 * (typeB + typeC + other)) / typeA;
