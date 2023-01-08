@@ -1,6 +1,8 @@
 import { Form } from "react-router-dom";
+import { useRedirectIfNecessary } from "storage";
 
 export default function Decision() {
+  useRedirectIfNecessary();
   return (
     <Form method="post">
       <div>

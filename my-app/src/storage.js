@@ -1,5 +1,10 @@
-import { redirect } from "react-router-dom";
-import { useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  redirect,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 async function saveValues(values) {
   const storage = window.localStorage;
@@ -8,6 +13,7 @@ async function saveValues(values) {
 
 export async function submitPage({ request, params }) {
   const formData = Object.fromEntries(await request.formData()); //method transforms a list of key-value pairs into an object.
+  formData.currentPage = "/ampoule/vertical";
   await saveValues(formData);
   return redirect(`/ampoule/vertical`);
 }
@@ -21,18 +27,18 @@ export async function startCountdown({ params }) {
   const values = await loadValues();
   const start = Date.now();
   values.startTime = start;
+  values.currentPage = `/countdown/${params.direction}`;
   await saveValues(values);
-  return redirect(`/countdown/${params.direction}`);
+  return redirect(values.currentPage);
 }
 
 export async function nextDirection({ params }) {
   const values = await loadValues();
   values[params.direction] = true;
+  values.currentPage =
+    params.direction === "vertical" ? `/ampoule/horizontal` : `/ampoule-types`;
   await saveValues(values);
-  if (params.direction === "vertical") {
-    return redirect(`/ampoule/horizontal`);
-  }
-  return redirect(`/ampoule-types`);
+  return redirect(values.currentPage);
 }
 
 export async function submitTypes({ request, params }) {
@@ -44,16 +50,18 @@ export async function submitTypes({ request, params }) {
     typeC: parseInt(formData.typeC, 10) || 0,
     other: parseInt(formData.other, 10) || 0,
   };
+  values.currentPage = `/decision`;
   await saveValues(values);
   return redirect(`/decision`);
 }
 
 export async function submitDecision({ request }) {
   const formData = Object.fromEntries(await request.formData());
-  if ("new" in formData) {
-    return redirect(`/`);
-  }
-  return redirect(`/formula`);
+  const isNewAmpoule = "new" in formData;
+  const values = await loadValues();
+  values.currentPage = `/`;
+  await saveValues(values);
+  return redirect(isNewAmpoule ? `/` : `/formula`);
 }
 
 export function useFormula() {
@@ -71,4 +79,17 @@ export function useFormula() {
     result,
     resultText: result ? "OK" : "NOK",
   };
+}
+
+export function useRedirectIfNecessary() {
+  const values = useLoaderData();
+  const currentPath = useLocation().pathname;
+  const navigate = useNavigate();
+  const currentPage = values.currentPage;
+
+  useEffect(() => {
+    if (currentPage && currentPage !== currentPath) {
+      navigate(currentPage);
+    }
+  }, [currentPage, currentPath, navigate]);
 }

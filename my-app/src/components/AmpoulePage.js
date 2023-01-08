@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import { Form, useParams } from "react-router-dom";
 import { useState } from "react";
+import { useRedirectIfNecessary } from "storage";
 
 const AmpoulePage = () => {
   const [checked, setChecked] = useState(false);
@@ -13,7 +14,7 @@ const AmpoulePage = () => {
   function checkHandler() {
     setChecked(!checked);
   }
-
+  useRedirectIfNecessary();
   return (
     <Form method="post">
       <Ampoule>

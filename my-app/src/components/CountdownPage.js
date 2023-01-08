@@ -8,6 +8,7 @@ import formatDuration from "format-duration";
 // import { FaInfo } from "react-icons/fa";
 //components
 import PopupModal from "./PopupModal";
+import { useRedirectIfNecessary } from "storage";
 
 const CountdownPage = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -32,7 +33,7 @@ const CountdownPage = () => {
       clearInterval(intervalId);
     };
   }, [values.startTime, durationTime]); //when values changed then it needs to reset the effect
-
+  useRedirectIfNecessary();
   return (
     <>
       <Countdown>
