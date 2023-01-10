@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { Form } from "react-router-dom";
 // import { useState } from "react";
+import { useRedirectIfNecessary } from "storage";
 
 const AmpouleTypesPage = () => {
+  useRedirectIfNecessary();
   return (
     <Form method="post">
       <StyledForm>

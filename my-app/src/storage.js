@@ -1,5 +1,10 @@
-import { redirect } from "react-router-dom";
-import { useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  redirect,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 async function saveValues(values) {
   const storage = window.localStorage;
@@ -8,31 +13,44 @@ async function saveValues(values) {
 
 export async function submitPage({ request, params }) {
   const formData = Object.fromEntries(await request.formData()); //method transforms a list of key-value pairs into an object.
-  await saveValues(formData);
+  const values = await loadValues();
+  values.currentPage = "/ampoule/vertical";
+  values.current = formData;
+
+  await saveValues(values);
   return redirect(`/ampoule/vertical`);
 }
 
 export async function loadValues() {
   const storage = window.localStorage;
-  return JSON.parse(storage.getItem("store"));
+  const values = JSON.parse(storage.getItem("store"));
+  return values || {}; // Return parsed values or default to an empty object if no values exist
 }
 
 export async function startCountdown({ params }) {
   const values = await loadValues();
   const start = Date.now();
   values.startTime = start;
+  values.currentPage = `/countdown/${params.direction}`;
   await saveValues(values);
-  return redirect(`/countdown/${params.direction}`);
+  return redirect(values.currentPage);
 }
 
 export async function nextDirection({ params }) {
+  const isVertical = params.direction === "vertical";
   const values = await loadValues();
-  values[params.direction] = true;
-  await saveValues(values);
-  if (params.direction === "vertical") {
-    return redirect(`/ampoule/horizontal`);
+
+  values.currentPage = isVertical ? `/ampoule/horizontal` : `/ampoule-types`;
+  if (!isVertical) {
+    if (!values.ampoules) {
+      values.ampoules = [];
+    }
+    values.ampoules = [...values.ampoules, values.current];
+    values.current = null;
   }
-  return redirect(`/ampoule-types`);
+  console.log("kak", values);
+  await saveValues(values);
+  return redirect(values.currentPage);
 }
 
 export async function submitTypes({ request, params }) {
@@ -44,16 +62,22 @@ export async function submitTypes({ request, params }) {
     typeC: parseInt(formData.typeC, 10) || 0,
     other: parseInt(formData.other, 10) || 0,
   };
+  values.currentPage = `/decision`;
   await saveValues(values);
   return redirect(`/decision`);
 }
 
 export async function submitDecision({ request }) {
   const formData = Object.fromEntries(await request.formData());
-  if ("new" in formData) {
-    return redirect(`/`);
-  }
-  return redirect(`/formula`);
+  const isNewAmpoule = "new" in formData;
+  const values = await loadValues();
+  values.currentPage = `/`;
+  await saveValues(values);
+  return redirect(isNewAmpoule ? `/` : `/formula`);
+}
+
+export async function submitFormula() {
+  return redirect("/print");
 }
 
 export function useFormula() {
@@ -70,5 +94,26 @@ export function useFormula() {
     percentage,
     result,
     resultText: result ? "OK" : "NOK",
+  };
+}
+
+export function useRedirectIfNecessary() {
+  const values = useLoaderData();
+  const currentPath = useLocation().pathname;
+  const navigate = useNavigate();
+  const currentPage = values.currentPage || "/"; // Default to / if no page is stored.
+
+  useEffect(() => {
+    if (currentPage !== currentPath) {
+      navigate(currentPage);
+    }
+  }, [currentPage, currentPath, navigate]);
+}
+
+export function useAmpouleTaskInfo(direction) {
+  const isVertical = direction === "vertical";
+  return {
+    position: isVertical ? "vertically" : "horizontally",
+    durationTime: isVertical ? 2 : 4,
   };
 }

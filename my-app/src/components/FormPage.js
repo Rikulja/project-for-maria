@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 // import Axios from "axios";
 import { Form } from "react-router-dom";
+import { useRedirectIfNecessary } from "storage";
 
 function FormPage() {
   // const url = "";
@@ -21,6 +22,10 @@ function FormPage() {
     newData[e.target.id] = e.target.value;
     setData(newData);
   }
+
+  //redirects to current page
+
+  useRedirectIfNecessary();
 
   return (
     <Form method="post">

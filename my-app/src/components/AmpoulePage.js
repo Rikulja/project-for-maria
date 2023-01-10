@@ -2,23 +2,24 @@
 import styled from "styled-components";
 import { Form, useParams } from "react-router-dom";
 import { useState } from "react";
+import { useAmpouleTaskInfo, useRedirectIfNecessary } from "storage";
+import formatDuration from "format-duration";
 
 const AmpoulePage = () => {
   const [checked, setChecked] = useState(false);
   const { direction } = useParams();
-  const isVertical = direction === "vertical";
-  const time = isVertical ? "00:15" : "00:20";
-  const position = isVertical ? "vertically" : "horizontally";
+  const { position, durationTime } = useAmpouleTaskInfo(direction);
 
   function checkHandler() {
     setChecked(!checked);
   }
-
+  useRedirectIfNecessary();
   return (
     <Form method="post">
       <Ampoule>
         <h4>
-          Place ampoules {position} and leave them for {time} minutes
+          Place ampoules {position} and leave them for
+          {formatDuration(1000 * durationTime, { leading: true })} minutes
         </h4>
         <div className="glow">
           Check when the ampoule is placed in the right direction

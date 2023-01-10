@@ -19,6 +19,7 @@ import {
   nextDirection,
   submitTypes,
   submitDecision,
+  submitFormula,
 } from "./storage";
 import {
   Route,
@@ -30,7 +31,13 @@ import {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<ParentComponent />} path="/" errorElement={<ErrorPage />}>
-      <Route index exact action={submitPage} element={<FormPage />}></Route>
+      <Route
+        index
+        exact
+        action={submitPage}
+        loader={loadValues}
+        element={<FormPage />}
+      ></Route>
       <Route
         path="temporary"
         loader={loadValues}
@@ -39,6 +46,7 @@ const router = createBrowserRouter(
       <Route
         path="ampoule/:direction"
         action={startCountdown}
+        loader={loadValues}
         element={<AmpoulePage />}
       ></Route>
 
@@ -51,19 +59,22 @@ const router = createBrowserRouter(
       <Route
         action={submitTypes}
         path="ampoule-types"
+        loader={loadValues}
         element={<AmpouleTypesPage />}
       ></Route>
       <Route
         path="decision"
         action={submitDecision}
+        loader={loadValues}
         element={<Decision />}
       ></Route>
       <Route
         loader={loadValues}
+        action={submitFormula}
         path="formula"
         element={<FormulaPage />}
       ></Route>
-      <Route path="print" element={<PrintPage />}></Route>
+      <Route path="print" loader={loadValues} element={<PrintPage />}></Route>
     </Route>
   )
 );

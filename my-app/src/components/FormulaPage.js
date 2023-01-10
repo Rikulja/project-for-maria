@@ -21,10 +21,12 @@ const FormulaPage = () => {
             <label htmlFor="typeB">% of types of ampoules</label>
           </div>
 
-          <button>Result {result ? "OK" : "NOK"}</button>
+          <button disabled>Result {result ? "OK" : "NOK"}</button>
         </div>
         <div>
-          <button type="submit">Sign</button>
+          <button type="submit" disabled>
+            Sign
+          </button>
         </div>
         <div>
           <button type="submit">Next</button>

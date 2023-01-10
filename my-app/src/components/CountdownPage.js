@@ -8,6 +8,7 @@ import formatDuration from "format-duration";
 // import { FaInfo } from "react-icons/fa";
 //components
 import PopupModal from "./PopupModal";
+import { useAmpouleTaskInfo, useRedirectIfNecessary } from "storage";
 
 const CountdownPage = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -15,9 +16,7 @@ const CountdownPage = () => {
   const values = useLoaderData();
   const isFinished = time === 0;
   const { direction } = useParams();
-  const isVertical = direction === "vertical";
-  const position = isVertical ? "vertically" : "horizontally";
-  const durationTime = isVertical ? 15 : 25;
+  const { position, durationTime } = useAmpouleTaskInfo(direction);
 
   useEffect(() => {
     const updateTime = () => {
@@ -27,19 +26,21 @@ const CountdownPage = () => {
       setTime(Math.max(0, timeRemaining));
     };
     updateTime();
-    const intervalId = setInterval(updateTime, 1000);
+    const intervalId = setInterval(updateTime, 1);
     return () => {
       clearInterval(intervalId);
     };
   }, [values.startTime, durationTime]); //when values changed then it needs to reset the effect
-
+  useRedirectIfNecessary();
   return (
     <>
       <Countdown>
         <Form method="post">
           <h4>
             The ampoules are placed {position} for &nbsp;
-            <span> {formatDuration(1000 * time, { leading: true })}</span>
+            <span>
+              {formatDuration(1000 * time, { leading: true, ms: true })}
+            </span>
             &nbsp; minutes
           </h4>
           <i>
