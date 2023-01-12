@@ -18,7 +18,7 @@ const AmpoulePage = () => {
     <Form method="post">
       <Ampoule>
         <h4>
-          Place ampoules {position} and leave them for
+          Place ampoules {position} and leave them for &nbsp;
           {formatDuration(1000 * durationTime, { leading: true })} minutes
         </h4>
         <div className="glow">
