@@ -6,12 +6,19 @@ import { useRedirectIfNecessary } from "storage";
 const AmpouleTypesPage = (e) => {
   useRedirectIfNecessary();
 
-  const [value, setValue] = useState(1);
-  const maxNumberHandler = (e) => {
+  const [value, setValue] = useState({
+    typeA: 1,
+    typeB: 0,
+    typeC: 0,
+    other: 0,
+  });
+  const maxNumberHandler = (name, e) => {
     const max = 1;
     const min = 0;
     const value = Math.max(min, Math.min(max, Number(e.target.value)));
-    setValue(value);
+    setValue((prevState) => {
+      return { ...prevState, [name]: value };
+    });
   };
 
   return (
@@ -26,8 +33,8 @@ const AmpouleTypesPage = (e) => {
             <input
               type="number"
               name="typeA"
-              value={value}
-              onChange={maxNumberHandler}
+              value={value.typeA}
+              onChange={(e) => maxNumberHandler("typeA", e)}
             />
             <label htmlFor="typeA">Type A ampoules </label>
           </div>
@@ -35,8 +42,8 @@ const AmpouleTypesPage = (e) => {
             <input
               type="number"
               name="typeB"
-              value={value}
-              onChange={maxNumberHandler}
+              value={value.typeB}
+              onChange={(e) => maxNumberHandler("typeB", e)}
             />
             <label htmlFor="typeB">Type B ampoules</label>
           </div>
@@ -44,8 +51,8 @@ const AmpouleTypesPage = (e) => {
             <input
               type="number"
               name="typeC"
-              value={value}
-              onChange={maxNumberHandler}
+              value={value.typeC}
+              onChange={(e) => maxNumberHandler("typeC", e)}
             />
             <label htmlFor="typeC">Type C ampoules</label>
           </div>
@@ -53,8 +60,8 @@ const AmpouleTypesPage = (e) => {
             <input
               type="number"
               name="other"
-              value={value}
-              onChange={maxNumberHandler}
+              value={value.other}
+              onChange={(e) => maxNumberHandler("other", e)}
             />
             <label htmlFor="other">Other ampoules</label>
           </div>
