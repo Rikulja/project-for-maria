@@ -7,12 +7,14 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box
 }
 body{
-    height: 100vh;
+ 
     font-family: "Roboto", sans-serif;
     color: #2c3639;
+
 }
 
 .container{
+  height:100%;
     background-color: #76ba99;
     padding: 7rem 3rem;
     font-size: 150%;
@@ -74,7 +76,7 @@ h1{
   
     p{
         padding: 3rem 0rem;
-        color: #ccc;
+      
         font-size: 1.4rem;
         line-height: 150%;
     }

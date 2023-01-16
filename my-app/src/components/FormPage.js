@@ -101,7 +101,6 @@ const StyledForm = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  display: flex;
 
   .column {
     margin: 0 auto 2rem;

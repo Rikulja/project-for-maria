@@ -8,6 +8,7 @@ import ParentComponent from "components/ParentComponent";
 import Decision from "components/Decision";
 import FormulaPage from "components/FormulaPage";
 import PrintPage from "components/PrintPage";
+import ReportPage from "components/ReportPage";
 
 //Global Style
 import GlobalStyle from "./components/GlobalStyle";
@@ -43,6 +44,7 @@ const router = createBrowserRouter(
         loader={loadValues}
         element={<TemporaryStorage />}
       ></Route>
+      <Route path="report" loader={loadValues} element={<ReportPage />}></Route>
       <Route
         path="ampoule/:direction"
         action={startCountdown}
