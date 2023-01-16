@@ -26,7 +26,7 @@ const CountdownPage = () => {
       setTime(Math.max(0, timeRemaining));
     };
     updateTime();
-    const intervalId = setInterval(updateTime, 1);
+    const intervalId = setInterval(updateTime, 1000);
     return () => {
       clearInterval(intervalId);
     };
@@ -38,9 +38,7 @@ const CountdownPage = () => {
         <Form method="post">
           <h4>
             The ampoules are placed {position} for &nbsp;
-            <span>
-              {formatDuration(1000 * time, { leading: true, ms: true })}
-            </span>
+            <span>{formatDuration(1000 * time, { leading: true })}</span>
             &nbsp; minutes
           </h4>
           <i>
