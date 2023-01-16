@@ -41,14 +41,6 @@ export async function nextDirection({ params }) {
   const values = await loadValues();
 
   values.currentPage = isVertical ? `/ampoule/horizontal` : `/ampoule-types`;
-  if (!isVertical) {
-    if (!values.ampoules) {
-      values.ampoules = [];
-    }
-    values.ampoules = [...values.ampoules, values.current];
-    values.current = null;
-  }
-  console.log("kak", values);
   await saveValues(values);
   return redirect(values.currentPage);
 }
@@ -56,13 +48,36 @@ export async function nextDirection({ params }) {
 export async function submitTypes({ request, params }) {
   const formData = Object.fromEntries(await request.formData());
   const values = await loadValues();
-  values.types = {
+  const newTypes = {
     typeA: parseInt(formData.typeA, 10) || 0,
     typeB: parseInt(formData.typeB, 10) || 0,
     typeC: parseInt(formData.typeC, 10) || 0,
     other: parseInt(formData.other, 10) || 0,
   };
+  if (values.types) {
+    console.log("Where is my data", values.types);
+    for (const type of ["typeA", "typeB", "typeC", "other"]) {
+      console.log(`For ${type} ${values.types[type]} ${newTypes[type]}`);
+      values.types[type] += newTypes[type];
+      console.log(
+        "AFTER",
+        `For ${type} ${values.types[type]} ${newTypes[type]}`
+      );
+    }
+  } else {
+    console.log("ELSE");
+    values.types = newTypes;
+  }
+  values.current.types = newTypes;
   values.currentPage = `/decision`;
+  //adds the current ampoule to values.ampoules array
+  if (!values.ampoules) {
+    values.ampoules = [];
+  }
+  values.ampoules = [...values.ampoules, values.current];
+  //avoid having two copies
+  values.current = null;
+
   await saveValues(values);
   return redirect(`/decision`);
 }

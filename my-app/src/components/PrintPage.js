@@ -80,6 +80,16 @@ const createAmpouleParagraphs = (values) => {
       new Paragraph(`Date of Control: ${item.dcontrol}`),
       new Paragraph(`Operator Name: ${item.operator}`),
       new Paragraph(`Room Nr: ${item.room}`),
+      new Paragraph(
+        `Type: ${Object.entries(item.types)
+          .filter(([key, value]) => {
+            return value > 0;
+          })
+          .map(([key, value]) => {
+            return `${key}: ${value}`;
+          })
+          .join(", ")}`
+      ),
     ];
   });
 };
