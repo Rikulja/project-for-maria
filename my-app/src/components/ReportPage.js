@@ -3,13 +3,27 @@ import { Form } from "react-router-dom";
 import { useState } from "react";
 
 const ReportPage = () => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState({
+    operator: "",
+    reason: "",
+    reporttext: "",
+  });
+
+  const [currentDate, setDate] = useState(new Date());
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setValue((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
   return (
     <Form method="post">
       <h4>Report please the reason of emergency abort.</h4>
       <Report>
         <div className="column">
-          <p>Operator name: {value}</p>
+          <p>Operator name: {`${value.operator}`} </p>
           <div className="row">
             <label htmlFor="operator">Operator 1</label>
             <input
@@ -17,7 +31,7 @@ const ReportPage = () => {
               type="radio"
               value="Operator 1"
               name="operator"
-              onChange={(e) => setValue(e.target.value)}
+              onChange={handleChange}
             ></input>
             <label htmlFor="operator">Operator 2</label>
             <input
@@ -25,17 +39,35 @@ const ReportPage = () => {
               type="radio"
               value="Operator 2"
               name="operator"
-              onChange={(e) => setValue(e.target.value)}
+              onChange={handleChange}
             ></input>
           </div>
-          <p>Pick the reason of abort:</p>
+          <p>Pick the reason of abort: {`${value.reason}`} </p>
           <div className="row">
-            <label htmlFor="reason">Reason 1</label>
-            <input className="custom-radio" type="radio" name="reason"></input>
-            <label htmlFor="reason">Reason 2</label>
-            <input className="custom-radio" type="radio" name="reason"></input>
-            <label htmlFor="reason">Reason 3</label>
-            <input className="custom-radio" type="radio" name="reason"></input>
+            <label htmlFor="reason">Reason1</label>
+            <input
+              onChange={handleChange}
+              className="custom-radio"
+              type="radio"
+              value="reason1"
+              name="reason"
+            ></input>
+            <label htmlFor="reason">Reason2</label>
+            <input
+              onChange={handleChange}
+              className="custom-radio"
+              value="reason2"
+              type="radio"
+              name="reason"
+            ></input>
+            <label htmlFor="reason">Reason3</label>
+            <input
+              onChange={handleChange}
+              className="custom-radio"
+              value="reason3"
+              type="radio"
+              name="reason"
+            ></input>
           </div>
 
           <p>
@@ -43,12 +75,24 @@ const ReportPage = () => {
           </p>
           <div className="row">
             <textarea
+              onChange={handleChange}
               name="reporttext"
               rows="10"
               cols="60"
               className="textarea"
               placeholder="State your issue"
             ></textarea>
+            <p>
+              Current Date:
+              <div>
+                {currentDate.toLocaleDateString("et-ET", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })}
+                {" " + currentDate.getHours() + ":" + currentDate.getMinutes()}
+              </div>
+            </p>
           </div>
           <button type="submit">Send</button>
         </div>
