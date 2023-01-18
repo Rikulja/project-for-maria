@@ -7,25 +7,33 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box
 }
 body{
- 
     font-family: "Roboto", sans-serif;
     color: #2c3639;
-
+    font-weight:700;
 }
-
+.app-bg{
+  min-height: 100vh;
+  height: 100%;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-y: auto;
+}
 .container{
-  height:100%;
-    background-color: #76ba99;
-    padding: 7rem 3rem;
+    height:90vh;
+    background-color: #4c922691;
+    padding: 5rem 3rem;
     font-size: 150%;
-    width: 80%;
+    width: 70%;
     min-width: 200px;
     transform: translate(-50%, -50%);
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 55%;
     border-radius: 2px;
+    overflow:hidden;
+    overflow-y:auto
 }
+
 button {
     /* position: absolute;
     margin-top: 1rem; */
@@ -90,6 +98,7 @@ h1{
     list-style: none;
     padding: 0;
   }
+
 `;
 
 export default GlobalStyle;

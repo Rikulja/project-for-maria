@@ -9,7 +9,7 @@ const ReportPage = () => {
     reporttext: "",
   });
 
-  const [currentDate, setDate] = useState(new Date());
+  const [currentDate] = useState(new Date());
 
   const handleChange = (e) => {
     const name = e.target.name;
