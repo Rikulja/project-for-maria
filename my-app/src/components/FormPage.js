@@ -32,7 +32,9 @@ function FormPage() {
       <StyledForm>
         <div className="column">
           <div className="row">
-            <label htmlFor="pname">Product Name</label>
+            <label className="required" htmlFor="pname">
+              Product Name
+            </label>
             <input
               onChange={(e) => handler(e)}
               value={data.product}
@@ -42,7 +44,9 @@ function FormPage() {
             />
           </div>
           <div className="row">
-            <label htmlFor="mdate"> Manufacture Date</label>
+            <label className="required" htmlFor="mdate">
+              Manufacture Date
+            </label>
             <input
               className="date"
               onChange={(e) => handler(e)}
@@ -54,7 +58,9 @@ function FormPage() {
             />
           </div>
           <div className="row">
-            <label htmlFor="dcontrol"> Date of Control</label>
+            <label className="required" htmlFor="dcontrol">
+              Date of Control
+            </label>
             <input
               className="date"
               onChange={(e) => handler(e)}
@@ -66,7 +72,9 @@ function FormPage() {
             />
           </div>
           <div className="row">
-            <label htmlFor="operator"> Operator Name(s)</label>
+            <label className="required" htmlFor="operator">
+              Operator Name(s)
+            </label>
             <select
               onChange={(e) => handler(e)}
               value={data.operator}
@@ -79,7 +87,9 @@ function FormPage() {
             </select>
           </div>
           <div className="row">
-            <label htmlFor="room"> Room Nr</label>
+            <label className="required" htmlFor="room">
+              Room Nr
+            </label>
             <input
               onChange={(e) => handler(e)}
               value={data.roomNr}
@@ -101,7 +111,6 @@ const StyledForm = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  display: flex;
 
   .column {
     margin: 0 auto 2rem;
@@ -117,6 +126,13 @@ const StyledForm = styled.div`
     align-items: center;
     margin: 1rem;
     font-size: 1.7rem;
+    font-weight: 600;
+  }
+  .required:after {
+    content: " *";
+    padding-left: 5px;
+    font-size: 1.2rem;
+    color: #c52c2c;
   }
   input {
     color: #344d67;
