@@ -33,7 +33,7 @@ const ReportPage = () => {
               name="operator"
               onChange={handleChange}
             ></input>
-            <label htmlFor="operator">Operator 2</label>
+            <label htmlFor="operator">Operator 2.</label>
             <input
               className="custom-radio"
               type="radio"
