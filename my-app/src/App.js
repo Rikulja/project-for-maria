@@ -11,6 +11,7 @@ import PrintPage from "components/PrintPage";
 import ReportPage from "components/ReportPage";
 import NavBar from "components/NavBar";
 import ampoules from "./images/ampoules.jpg";
+import Footer from "components/Footer";
 
 //Global Style
 import GlobalStyle from "./components/GlobalStyle";
@@ -86,11 +87,14 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div>
-      <div className="app-bg" style={{ backgroundImage: `url(${ampoules})` }}>
-        <NavBar />
-        <GlobalStyle />
-        <RouterProvider router={router} />
+      <div className="wrapper">
+        <div className="app-bg" style={{ backgroundImage: `url(${ampoules})` }}>
+          <NavBar />
+          <GlobalStyle />
+          <RouterProvider router={router} />
+        </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -49,11 +49,16 @@ const Ampoule = styled.div`
   button {
     margin: 0 auto;
   }
+  h4 {
+    margin-bottom: 10rem;
+    background-color: #eeeeee9f;
+  }
   .glow {
     font-style: italic;
     -webkit-animation: glow 1s ease-in-out infinite alternate;
     -moz-animation: glow 1s ease-in-out infinite alternate;
     animation: glow 1s ease-in-out infinite alternate;
+    margin-bottom: 2rem;
   }
 
   @keyframes glow {
@@ -75,7 +80,6 @@ const Checkmark = styled.div`
     text-align: center;
     height: 2.3rem;
     width: 2.3rem;
-    background-color: #eee;
   }
 `;
 

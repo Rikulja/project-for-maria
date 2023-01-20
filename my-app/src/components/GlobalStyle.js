@@ -98,6 +98,14 @@ h1{
     list-style: none;
     padding: 0;
   }
+  .wrapper{
+
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  }
 
 `;
 
