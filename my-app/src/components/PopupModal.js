@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { updateCurrentPage } from "./storage";
 
 export default function PopupModal({ closeModal }) {
+  const navigate = useNavigate();
   return (
     <Modal>
       <div className="title">
@@ -17,9 +20,11 @@ export default function PopupModal({ closeModal }) {
           Cancel
         </button>
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             if (window.confirm("Are you sure you want to stop the process?")) {
-              <input type="password" minlength="3" maxlength="7" required />;
+              updateCurrentPage("/report");
+              navigate("/report");
             }
           }}
         >

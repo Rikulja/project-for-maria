@@ -111,7 +111,7 @@ export function useFormula() {
     resultText: result ? "OK" : "NOK",
   };
 }
-
+//if user ends up with wrong url it redirects back
 export function useRedirectIfNecessary() {
   const values = useLoaderData();
   const currentPath = useLocation().pathname;
@@ -123,6 +123,12 @@ export function useRedirectIfNecessary() {
       navigate(currentPage);
     }
   }, [currentPage, currentPath, navigate]);
+}
+
+export async function updateCurrentPage(nextPage) {
+  const values = await loadValues();
+  values.currentPage = nextPage;
+  await saveValues(values);
 }
 
 export function useAmpouleTaskInfo(direction) {
