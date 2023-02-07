@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { updateCurrentPage } from "./storage";
+import { updateCurrentPage } from "../storage";
 
 export default function PopupModal({ closeModal }) {
   const navigate = useNavigate();
