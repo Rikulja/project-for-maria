@@ -24,6 +24,7 @@ import {
   submitTypes,
   submitDecision,
   submitFormula,
+  submitReport,
 } from "./storage";
 import {
   Route,
@@ -47,7 +48,12 @@ const router = createBrowserRouter(
         loader={loadValues}
         element={<TemporaryStorage />}
       ></Route>
-      <Route path="report" loader={loadValues} element={<ReportPage />}></Route>
+      <Route
+        action={submitReport}
+        path="report"
+        loader={loadValues}
+        element={<ReportPage />}
+      ></Route>
       <Route
         path="ampoule/:direction"
         action={startCountdown}

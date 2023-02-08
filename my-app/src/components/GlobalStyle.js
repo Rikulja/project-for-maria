@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 }
 body{
     font-family: "Roboto", sans-serif;
-    color: #2c3639;
+    color: #282d2f;
     font-weight:700;
 }
 .app-bg{
@@ -38,18 +38,19 @@ button {
     /* position: absolute;
     margin-top: 1rem; */
     cursor:pointer;
+    font-size:1rem;
     left: 50%;
     text-align:center;
-    width:10vh;
+    width:13vh;
     margin-top:5rem ;
-    padding: 0.5rem 2rem;
-    background-color: #344d67;
-    border: 1px solid #ddd;
+    padding: 0.5rem 1.5rem;
+    background-color: #2a2a2a;
+    border: 2px solid #ddd;
     color: white;
     &:hover {
-      background: royalblue;
-      border: 1px solid #d73851;
-      color: #fff;
+      background: #4db225;
+      border: 2px solid #d73851;
+      color:  #2a2a2a;
     }
     &:disabled {
     background-color: dimgrey;
