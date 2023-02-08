@@ -63,10 +63,10 @@ const CountdownPage = () => {
                 setOpenModal(true);
               }}
             >
-              Abort
+              <b>Abort</b>
             </button>
             <button type="submit" disabled={!isFinished}>
-              Next
+              <b> Next</b>
             </button>
           </div>
           {openModal && <PopupModal closeModal={setOpenModal} />}
@@ -120,7 +120,7 @@ const Countdown = styled.div`
     .abort {
       background-color: #d73851;
       &:hover {
-        border: 1px solid royalblue;
+        border: 2px solid black;
       }
     }
     * {

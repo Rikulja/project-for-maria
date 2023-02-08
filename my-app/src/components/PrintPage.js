@@ -2,13 +2,14 @@ import { Form, useLoaderData } from "react-router-dom";
 import { Document, HeadingLevel, Packer, Paragraph } from "docx";
 import FileSaver from "file-saver";
 import { useFormula } from "storage";
+import styled from "styled-components";
 
 const PrintPage = () => {
   const values = useLoaderData();
   const formula = useFormula();
   return (
     <Form method="post">
-      <div>
+      <Print>
         <h4>
           The protocol is now ready and can be found in the directory
           C:/Documents/XXXXX
@@ -25,11 +26,18 @@ const PrintPage = () => {
         <button type="submit" disabled>
           Finish
         </button>
-      </div>
+      </Print>
     </Form>
   );
 };
 
+const Print = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-style: italic;
+  align-items: center;
+`;
 const downloadDocument = async (values, formula) => {
   const doc = new Document({
     sections: [

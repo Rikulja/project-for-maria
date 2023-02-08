@@ -46,6 +46,7 @@ const ReportPage = () => {
           <div className="row">
             <label htmlFor="reason">Reason1</label>
             <input
+              required
               onChange={handleChange}
               className="custom-radio"
               type="radio"
@@ -54,6 +55,7 @@ const ReportPage = () => {
             ></input>
             <label htmlFor="reason">Reason2</label>
             <input
+              required
               onChange={handleChange}
               className="custom-radio"
               value="reason2"
@@ -62,6 +64,7 @@ const ReportPage = () => {
             ></input>
             <label htmlFor="reason">Reason3</label>
             <input
+              required
               onChange={handleChange}
               className="custom-radio"
               value="reason3"
@@ -70,9 +73,8 @@ const ReportPage = () => {
             ></input>
           </div>
 
-          <p>
-            <label htmlFor="reporttext">Describe:</label>
-          </p>
+          <label htmlFor="reporttext">Describe:</label>
+
           <div className="row">
             <textarea
               onChange={handleChange}
@@ -82,17 +84,15 @@ const ReportPage = () => {
               className="textarea"
               placeholder="State your issue"
             ></textarea>
-            <p>
-              Current Date:
-              <div>
-                {currentDate.toLocaleDateString("et-ET", {
-                  day: "numeric",
-                  month: "short",
-                  year: "numeric",
-                })}
-                {" " + currentDate.getHours() + ":" + currentDate.getMinutes()}
-              </div>
-            </p>
+            Current Date:
+            <div>
+              {currentDate.toLocaleDateString("et-ET", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+              {" " + currentDate.getHours() + ":" + currentDate.getMinutes()}
+            </div>
           </div>
           <button type="submit">Send</button>
         </div>

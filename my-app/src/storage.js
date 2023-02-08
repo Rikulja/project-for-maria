@@ -21,6 +21,16 @@ export async function submitPage({ request, params }) {
   return redirect(`/ampoule/vertical`);
 }
 
+export async function submitReport({ request, params }) {
+  const formData = Object.fromEntries(await request.formData()); //method transforms a list of key-value pairs into an object.
+  const values = await loadValues();
+  values.currentPage = "/";
+  values.current = formData;
+
+  await saveValues(values);
+  return redirect(`/`);
+}
+
 export async function loadValues() {
   const storage = window.localStorage;
   const values = JSON.parse(storage.getItem("store"));
