@@ -44,13 +44,12 @@ button {
     width:13vh;
     margin-top:5rem ;
     padding: 0.5rem 1.5rem;
-    background-color: #2a2a2a;
+    background-color: #3b3939;
     border: 2px solid #ddd;
     color: white;
+    transition:all 0.5s ease-in-out;
     &:hover {
-      background: #4db225;
       border: 2px solid #d73851;
-      color:  #2a2a2a;
     }
     &:disabled {
     background-color: dimgrey;
