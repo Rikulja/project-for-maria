@@ -21,14 +21,26 @@ export async function submitPage({ request, params }) {
   return redirect(`/ampoule/vertical`);
 }
 
-export async function submitReport({ request, params }) {
+export async function submitReport({ request }) {
   const formData = Object.fromEntries(await request.formData()); //method transforms a list of key-value pairs into an object.
+  formData.time = Date.now();
   const values = await loadValues();
   values.currentPage = "/";
-  values.current = formData;
-
+  values.current.report = formData;
+  values.current.ampouleFailed = true;
+  completeCurrentAmpoule(values);
   await saveValues(values);
   return redirect(`/`);
+}
+
+//if ampoule failed
+function completeCurrentAmpoule(values) {
+  if (!values.ampoules) {
+    values.ampoules = [];
+  }
+  values.ampoules = [...values.ampoules, values.current];
+  //avoid having two copies
+  values.current = null;
 }
 
 export async function loadValues() {
@@ -81,12 +93,7 @@ export async function submitTypes({ request, params }) {
   values.current.types = newTypes;
   values.currentPage = `/decision`;
   //adds the current ampoule to values.ampoules array
-  if (!values.ampoules) {
-    values.ampoules = [];
-  }
-  values.ampoules = [...values.ampoules, values.current];
-  //avoid having two copies
-  values.current = null;
+  completeCurrentAmpoule(values);
 
   await saveValues(values);
   return redirect(`/decision`);
