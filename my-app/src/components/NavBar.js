@@ -1,12 +1,14 @@
 import styled from "styled-components";
-// import kevelt from "./images/Kevelt.png";
 
 const NavBar = () => {
   return (
     <NavStyled>
       <div className="container-navbar">
         <div className="header-inner">
-          <img src="/imgs/Kevelt.png" alt="kevelt" height="200" />
+          <div className="logo">
+            <img src="/imgs/ampoule-logo.png" alt="ampoule" />
+            Ampoules Control
+          </div>
           <div class="header-menu">
             <a className="nav-link" href="/">
               Home
@@ -23,12 +25,17 @@ const NavStyled = styled.nav`
   border-bottom: 5px solid #0a0a0a33;
   height: 10vh;
   img {
+    margin-right: 0.5rem;
     width: auto;
-    height: 36px;
+    height: 30px;
     max-width: 100%;
     vertical-align: middle;
     overflow-clip-margin: content-box;
     overflow: clip;
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-family: "Anek Malayalam", sans-serif;
   }
   .container-navbar {
     max-width: 1200px;
