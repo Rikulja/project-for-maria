@@ -27,6 +27,7 @@ const ReportPage = () => {
           <div className="row">
             <label htmlFor="operator">Operator 1</label>
             <input
+              required
               className="custom-radio"
               type="radio"
               value="Operator 1"
@@ -35,6 +36,7 @@ const ReportPage = () => {
             ></input>
             <label htmlFor="operator">Operator 2.</label>
             <input
+              required
               className="custom-radio"
               type="radio"
               value="Operator 2"

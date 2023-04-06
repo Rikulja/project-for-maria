@@ -78,27 +78,43 @@ const createAmpouleParagraphs = (values) => {
   // Use flatMap instead of map so that we can return multiple paragraphs for each ampoule and
   // they will be 'flattened' into one flat list.
   return values.ampoules.flatMap((item, index) => {
-    return [
-      new Paragraph({
-        text: `Ampoule ${index + 1}`,
-        heading: HeadingLevel.HEADING_2,
-      }),
-      new Paragraph(`Product name: ${item.pname}`),
-      new Paragraph(`Manufacture Date: ${item.mdate}`),
-      new Paragraph(`Date of Control: ${item.dcontrol}`),
-      new Paragraph(`Operator Name: ${item.operator}`),
-      new Paragraph(`Room Nr: ${item.room}`),
-      new Paragraph(
-        `Type: ${Object.entries(item.types)
-          .filter(([key, value]) => {
-            return value > 0;
-          })
-          .map(([key, value]) => {
-            return `${key}: ${value}`;
-          })
-          .join(", ")}`
-      ),
-    ];
+    if (item.ampouleFailed) {
+      return [
+        new Paragraph({
+          text: `Ampoule ${index + 1}`,
+          heading: HeadingLevel.HEADING_2,
+        }),
+        new Paragraph(`Product name: ${item.pname}`),
+        new Paragraph(`Manufacture Date: ${item.mdate}`),
+        new Paragraph(`Date of Control: ${item.dcontrol}`),
+        new Paragraph(`Operator Name: ${item.operator}`),
+        new Paragraph(`Room Nr: ${item.room}`),
+        new Paragraph("type: failed"),
+        new Paragraph(`Report: ${JSON.stringify(item.report)}`),
+      ];
+    } else {
+      return [
+        new Paragraph({
+          text: `Ampoule ${index + 1}`,
+          heading: HeadingLevel.HEADING_2,
+        }),
+        new Paragraph(`Product name: ${item.pname}`),
+        new Paragraph(`Manufacture Date: ${item.mdate}`),
+        new Paragraph(`Date of Control: ${item.dcontrol}`),
+        new Paragraph(`Operator Name: ${item.operator}`),
+        new Paragraph(`Room Nr: ${item.room}`),
+        new Paragraph(
+          `Type: ${Object.entries(item.types || {})
+            .filter(([key, value]) => {
+              return value > 0;
+            })
+            .map(([key, value]) => {
+              return `${key}: ${value}`;
+            })
+            .join(", ")}`
+        ),
+      ];
+    }
   });
 };
 

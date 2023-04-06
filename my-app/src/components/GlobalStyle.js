@@ -38,7 +38,8 @@ button {
     /* position: absolute;
     margin-top: 1rem; */
     cursor:pointer;
-    font-size:1rem;
+    font-size:1.2rem;
+    font-weight:bold;
     left: 50%;
     text-align:center;
     width:13vh;
@@ -49,6 +50,8 @@ button {
     color: white;
     transition:all 0.5s ease-in-out;
     &:hover {
+      color:#3b3939;
+      background-color:#16CEB5;
       border: 2px solid #d73851;
     }
     &:disabled {
@@ -88,10 +91,10 @@ h1{
         font-size: 1.4rem;
         line-height: 150%;
     }
-   a{ color: #fff;
+   a{ color: #232323;
     text-decoration: none;
     cursor: pointer;
-    opacity: 0.9;
+  
    }
    ul,
   nav {
